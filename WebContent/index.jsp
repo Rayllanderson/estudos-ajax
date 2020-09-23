@@ -7,7 +7,6 @@
 <title>Menu</title>
 <link rel="stylesheet" href="resource/css/estilo.css">
 <link rel="stylesheet" href="resource/css/menu.css">
-<script src="jquery-3.5.1.min.js"></script>
 </head>
 <body >
 
@@ -18,6 +17,8 @@
 			<nav>
 			
 				<a href="excecoes.jsp">Capturando Exceções</a>
+				<a href="acesso-liberado.jsp">Acessar Sistema</a>
+				
 
 			</nav>
 			<nav>
