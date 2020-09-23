@@ -5,12 +5,17 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/*"})
+import entity.User;
+
+@WebFilter(urlPatterns = {"/acesso-liberado.jsp"})
 public class Autenticacao implements Filter{
 
     @Override
@@ -24,6 +29,16 @@ public class Autenticacao implements Filter{
 	    throws IOException, ServletException {
 	//executa as ações d request e response
 	chain.doFilter(request, response);
+	
+	HttpServletRequest req = (HttpServletRequest) request; //convertendo o request 
+	HttpSession session = req.getSession(); //pegando a seção
+	User user = (User) session.getAttribute("usuario");
+	if(user == null) {
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+	    dispatcher.forward(request, response);
+	    return;
+	}
+	
 //	System.out.println("interceptando");
     }
     
