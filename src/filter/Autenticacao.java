@@ -28,7 +28,7 @@ public class Autenticacao implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 	    throws IOException, ServletException {
 	//executa as ações d request e response
-	chain.doFilter(request, response);
+	
 	
 	HttpServletRequest req = (HttpServletRequest) request; //convertendo o request 
 	HttpSession session = req.getSession(); //pegando a seção
@@ -37,11 +37,9 @@ public class Autenticacao implements Filter{
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 	    dispatcher.forward(request, response);
 	    return;
-	}else {
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("/acesso-liberado.jsp");
-	    dispatcher.forward(request, response);
 	}
 	
+	chain.doFilter(request, response);
 //	System.out.println("interceptando");
     }
     

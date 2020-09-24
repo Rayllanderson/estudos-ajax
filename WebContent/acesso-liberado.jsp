@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h3>Página acessada somente após autenticação</h3>
-
+<h3 style="text-align: center">Bem vindo!</h3>
+<a href="LoginServlet?deslogar=true">Logout</a>
 </body>
 </html>

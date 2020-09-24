@@ -23,7 +23,13 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	// TODO Auto-generated method stub
+	boolean deslogar = Boolean.parseBoolean(request.getParameter("deslogar"));
+	if(deslogar) {
+	    HttpSession httpSession= request.getSession();
+	    httpSession.invalidate(); //removendo o usuario da seção
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+	    dispatcher.forward(request, response);
+	}
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 	if (login.equals("ray") && password.equals("123")) {
 	    dispatcher = request.getRequestDispatcher("acesso-liberado.jsp");
 	    HttpSession httpSession= request.getSession();
-	    httpSession.setAttribute("usuario", new entity.User(login, password));
+	    httpSession.setAttribute("usuario", new entity.User(login, password));//adiciona usuario na seção
 	} else {
 	    dispatcher = request.getRequestDispatcher("login.jsp");
 	    request.setAttribute("error", "Login ou senha inválidos");
