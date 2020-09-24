@@ -37,6 +37,9 @@ public class Autenticacao implements Filter{
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 	    dispatcher.forward(request, response);
 	    return;
+	}else {
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/acesso-liberado.jsp");
+	    dispatcher.forward(request, response);
 	}
 	
 //	System.out.println("interceptando");
